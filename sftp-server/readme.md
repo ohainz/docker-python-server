@@ -38,3 +38,18 @@ services:
     ports:
       - "2121:2121"
 ```
+
+You can create a `user.json` file in the conf volume, to define more than one user. In this case the environment variables `USER_NAME` and `USER_PASSWORD` are not longer needed. Here the structure of this `user.json`:
+
+```json
+[
+    {
+        "User": "admin",
+        "Password": "admin"
+    },
+    {
+        "User": "user",
+        "Password": "user",
+        "Folder": "user_folder"
+    }
+]```
