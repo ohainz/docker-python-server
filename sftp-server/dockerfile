@@ -1,0 +1,19 @@
+ARG IMAGE_NAME="python"
+ARG IMAGE_TAG="slim-bookworm"
+
+FROM $IMAGE_NAME:$IMAGE_TAG as base
+ENV BASE_PATH="/"
+ENV CERT_CN="localhost"
+ENV USER_NAME="ftp_user"
+ENV USER_PASSWORD="ftp_password"
+
+RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir pyftpdlib
+RUN pip install --no-cache-dir pyOpenSSL
+WORKDIR /data
+WORKDIR /conf
+WORKDIR /server
+VOLUME /data
+VOLUME /conf
+COPY ./server/start.py /server/start.py
+CMD python /server/start.py
