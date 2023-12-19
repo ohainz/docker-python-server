@@ -9,7 +9,9 @@ from pyftpdlib.servers import FTPServer
 from OpenSSL import crypto
 from datetime import datetime, timedelta
 
-BASE_PATH = os.path.join(os.environ.get("BASE_PATH"))
+BASE_PATH = os.environ.get("BASE_PATH")
+if not BASE_PATH:
+    BASE_PATH = os.curdir
 CONF_PATH = os.path.join(BASE_PATH, "conf")
 DATA_PATH = os.path.join(BASE_PATH, "data")
 KEY_PATH = os.path.join(CONF_PATH, "key.pem")
